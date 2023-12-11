@@ -1,4 +1,3 @@
-from pathlib import Path
 import re
 
 COLOUR_LIMITS = {
@@ -20,6 +19,5 @@ def process_game_line(game_line):
     return int(game_id)
 
 
-input_path = Path(r"C:\Users\Jesse Wyatt\Desktop\aoc\aoc2023_2_input.txt")
-with input_path.open("r") as fp:
-    print(sum(process_game_line(line) for line in fp.readlines()))
+def soln(data):
+    return sum(process_game_line(line) for line in data.readlines())
