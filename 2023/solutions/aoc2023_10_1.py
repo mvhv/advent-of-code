@@ -50,7 +50,7 @@ def dijkstra(adj_list, start):
     return distances
 
 
-def soln(data):
+def solution(data, debug=False):
     lines = [line.strip() for line in data.readlines()]
 
     grid = dict()

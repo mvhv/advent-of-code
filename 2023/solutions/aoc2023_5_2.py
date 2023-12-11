@@ -117,56 +117,56 @@ class RangeMapper:
 
 
 
-with aoc.challenge_data(5) as data:
+def solution(data, lines=False):
     lines = (line for line in data.readlines())
 
-seed_tuples = [(int(m['src']), int(m['len'])) for m in seeds_pattern.finditer(next(lines).strip())]
-seed_ranges = [range(start, start+length) for start, length in seed_tuples]
+    seed_tuples = [(int(m['src']), int(m['len'])) for m in seeds_pattern.finditer(next(lines).strip())]
+    seed_ranges = [range(start, start+length) for start, length in seed_tuples]
 
 
-print(seed_tuples)
-print(seed_ranges)
-range_mappers = []
-curr_mapper = -1
+    print(seed_tuples)
+    print(seed_ranges)
+    range_mappers = []
+    curr_mapper = -1
 
-for line in lines:
-    if m := title_pattern.match(line.strip()):
-        range_mappers.append(RangeMapper(f"{m['src']}-to-{m['dst']}"))
-        curr_mapper += 1
+    for line in lines:
+        if m := title_pattern.match(line.strip()):
+            range_mappers.append(RangeMapper(f"{m['src']}-to-{m['dst']}"))
+            curr_mapper += 1
 
-    elif m := map_pattern.match(line.strip()):
-        range_mappers[curr_mapper].add_map(int(m['src']), int(m['dst']), int(m['len']))
+        elif m := map_pattern.match(line.strip()):
+            range_mappers[curr_mapper].add_map(int(m['src']), int(m['dst']), int(m['len']))
 
-for mapper in range_mappers:
-    mapper.map_gaps()
-
-
-ultra_mapper = None
-for m in range_mappers:
-    print(f"basic_mapper: {m.name}, len: {len(m.mappings)}")
-    if ultra_mapper is None:
-        ultra_mapper = m 
-    else:
-        ultra_mapper = ultra_mapper.flatten(m)
-
-print(f"ultra_mapper: {ultra_mapper.name}, len: {len(ultra_mapper.mappings)}")
-for m in ultra_mapper.mappings:
-    print(m.src.start, m.src.stop)
-
-min_loc = math.inf
-count = 0
-for seed in chain.from_iterable(seed_ranges):
-    val = seed
     for mapper in range_mappers:
-        next_val = mapper.map(val)
-        # print(f"{mapper.name: <24}: {val} -> {next_val}")
-        val = next_val
-        
-    # print(f"{'SEED-TO-LOCATION': <24}: {seed} -> {val}\n")
-    min_loc = min(min_loc, val)
-    count += 1
-    if count % 10000 == 0:
-        print(count)
-        
+        mapper.map_gaps()
 
-# print(f"minimum loc: {min_loc}")
+
+    ultra_mapper = None
+    for m in range_mappers:
+        print(f"basic_mapper: {m.name}, len: {len(m.mappings)}")
+        if ultra_mapper is None:
+            ultra_mapper = m 
+        else:
+            ultra_mapper = ultra_mapper.flatten(m)
+
+    print(f"ultra_mapper: {ultra_mapper.name}, len: {len(ultra_mapper.mappings)}")
+    for m in ultra_mapper.mappings:
+        print(m.src.start, m.src.stop)
+
+    min_loc = math.inf
+    count = 0
+    for seed in chain.from_iterable(seed_ranges):
+        val = seed
+        for mapper in range_mappers:
+            next_val = mapper.map(val)
+            # print(f"{mapper.name: <24}: {val} -> {next_val}")
+            val = next_val
+            
+        # print(f"{'SEED-TO-LOCATION': <24}: {seed} -> {val}\n")
+        min_loc = min(min_loc, val)
+        count += 1
+        if count % 10000 == 0:
+            print(count)
+            
+
+    return min_loc

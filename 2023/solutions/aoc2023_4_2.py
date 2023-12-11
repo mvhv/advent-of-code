@@ -1,4 +1,3 @@
-import aoc
 import re
 from collections import defaultdict
 
@@ -10,18 +9,17 @@ def score_game(line):
         ours = set(int(n) for n in results["ours"].split() if n)
         matches = winning & ours
         return len(matches)
-    print(f"unmatched line: '{line}'")
     return 0
 
 
-with aoc.challenge_data(4) as data:
+def solution(data, debug=False):
     game_lines = [line.strip() for line in data.readlines()]
 
-duplicates = list(1 for _ in range(len(game_lines)))
+    duplicates = list(1 for _ in range(len(game_lines)))
 
-for n, game_line in enumerate(game_lines):
-    card_score = score_game(game_line)
-    for dupe in range(n+1, n+1+card_score):
-        duplicates[dupe] += duplicates[n]
+    for n, game_line in enumerate(game_lines):
+        card_score = score_game(game_line)
+        for dupe in range(n+1, n+1+card_score):
+            duplicates[dupe] += duplicates[n]
 
-print(sum(duplicates))
+    return sum(duplicates)

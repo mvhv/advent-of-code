@@ -11,9 +11,31 @@ challenge,part,test_type,dataset,answer
 4,1,test,aoc2023_4_test1,13
 4,2,test,aoc2023_4_test2,30
 
-10,2,test,aoc2023_10_test4,4
+5,1,test,aoc2023_5_test1,35
+5,2,test,aoc2023_5_test1,46
+
+6,1,test,aoc2023_6_test1,288
+6,2,test,aoc2023_6_test1,71503
+
+7,1,test,aoc2023_7_test1,6440
+7,2,test,aoc2023_7_test1,5905
+
+8,1,test,aoc2023_8_test1,2
+8,1,test,aoc2023_8_test2,6
+8,2,test,aoc2023_8_test3,6
+
+9,1,test,aoc2023_9_test1,114
+9,2,test,aoc2023_9_test1,2
+
+10,1,test,aoc2023_10_test1,4
+10,1,test,aoc2023_10_test2,8
+
+10,2,test,aoc2023_10_test3,4
 10,2,test,aoc2023_10_test4,8
 10,2,test,aoc2023_10_test5,10
+
+11,1,test,aoc2023_11_test1,374
+11,2,test,aoc2023_11_test1,82000210
 
 1,1,main,aoc2023_1_input,54927
 1,2,main,aoc2023_1_input,54581
@@ -27,5 +49,23 @@ challenge,part,test_type,dataset,answer
 4,1,main,aoc2023_4_input,22488
 4,2,main,aoc2023_4_input,7013204
 
+5,1,main,aoc2023_5_input,199602917
+5,2,main,aoc2023_5_input,2254686
 
+6,1,main,aoc2023_6_input,1155175
+6,2,main,aoc2023_6_input,35961505
+
+7,1,main,aoc2023_7_input,241344943
+7,2,main,aoc2023_7_input,243101568
+
+8,1,main,aoc2023_8_input,11309
+8,2,main,aoc2023_8_input,13740108158591
+
+9,1,main,aoc2023_9_input,1969958987
+9,2,main,aoc2023_9_input,1068
+
+10,1,main,aoc2023_10_input,6931
 10,2,main,aoc2023_10_input,357
+
+11,1,main,aoc2023_11_input,9608724
+11,2,main,aoc2023_11_input,904633799472

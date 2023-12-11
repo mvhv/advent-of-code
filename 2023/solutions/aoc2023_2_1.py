@@ -19,5 +19,5 @@ def process_game_line(game_line):
     return int(game_id)
 
 
-def soln(data):
+def solution(data, debug=False):
     return sum(process_game_line(line) for line in data.readlines())

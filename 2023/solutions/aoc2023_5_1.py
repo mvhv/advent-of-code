@@ -33,29 +33,30 @@ class RangeMapper:
 
 
 
-with aoc.challenge_data(5) as data:
+def solution(data, debug=False):
     lines = (line for line in data.readlines())
 
-seeds = [int(m.group()) for m in seeds_pattern.finditer(next(lines).strip())]
+    seeds = [int(m.group()) for m in seeds_pattern.finditer(next(lines).strip())]
 
-range_mappers = []
-curr_mapper = -1
+    range_mappers = []
+    curr_mapper = -1
 
-for line in lines:
-    if m := title_pattern.match(line.strip()):
-        range_mappers.append(RangeMapper(f"{m['src']}-to-{m['dst']}"))
-        curr_mapper += 1
+    for line in lines:
+        if m := title_pattern.match(line.strip()):
+            range_mappers.append(RangeMapper(f"{m['src']}-to-{m['dst']}"))
+            curr_mapper += 1
 
-    elif m := map_pattern.match(line.strip()):
-        range_mappers[curr_mapper].add_map(int(m['src']), int(m['dst']), int(m['len']))
+        elif m := map_pattern.match(line.strip()):
+            range_mappers[curr_mapper].add_map(int(m['src']), int(m['dst']), int(m['len']))
 
 
-loc_numbers = []
-for seed in seeds:
-    val = seed
-    for mapper in range_mappers:
-        val = mapper.map(val)
-    print(f"seed: {seed} -> location: {val}")
-    loc_numbers.append(val)
+    loc_numbers = []
+    for seed in seeds:
+        val = seed
+        for mapper in range_mappers:
+            val = mapper.map(val)
+        if debug: 
+            print(f"seed: {seed} -> location: {val}")
+        loc_numbers.append(val)
 
-print(f"minimum loc: {min(loc_numbers)}")
+    return min(loc_numbers)

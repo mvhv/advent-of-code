@@ -1,4 +1,3 @@
-import aoc
 import itertools
 
 
@@ -12,8 +11,6 @@ def predict_next(series):
     return series[-1] + predict_next(diff(series))
 
 
-with aoc.Challenge(9).data() as data:
+def solution(data, debug=False):
     params = [list(map(int, line.strip().split())) for line in data.readlines()]
-
-
-print(sum(predict_next(param) for param in params))
+    return sum(predict_next(param) for param in params)

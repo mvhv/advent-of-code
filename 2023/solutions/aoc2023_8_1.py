@@ -13,9 +13,8 @@ def parse_map_line(line):
     [n, l, r] = id_pattern.findall(line)
     return n, (l, r)
 
-if __name__ == "__main__":
-    with aoc.challenge_data(8) as data:
-        lines = data.readlines()
+def solution(data, debug=False):
+    lines = data.readlines()
 
     instructions = itertools.cycle(parse_instruction_line(lines[0]))
     graph = dict(map(parse_map_line, lines[2:]))
@@ -23,8 +22,7 @@ if __name__ == "__main__":
     node = "AAA"
     n = 0
     while node != "ZZZ":
-        print(node)
         node = graph[node][next(instructions)]
         n += 1
 
-    print(n)
+    return n

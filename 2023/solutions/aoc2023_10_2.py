@@ -3,8 +3,6 @@ from collections import defaultdict, deque
 import math
 from itertools import  repeat
 
-DEBUG = True
-
 NORTH = ( 0, -1)
 SOUTH = ( 0,  1)
 EAST  = ( 1,  0)
@@ -115,7 +113,7 @@ def side_by_side(block_a, block_b, divider=" | "):
 
 
 
-def soln(data):
+def solution(data, debug=False):
     lines = [line.strip() for line in data.readlines()]
     height = len(lines)
     width = len(lines[0])
@@ -130,9 +128,8 @@ def soln(data):
     
     adj_list = {point: valid_neighbours(grid, point) for point in grid.keys()}
     loop = find_loop(adj_list, starting_point)
-    windings = []
-    enclosed = find_enclosed(height, width, loop, adj_list, windings)
-    if DEBUG:
+    enclosed = find_enclosed(height, width, loop, adj_list)
+    if debug:
         print(
             side_by_side(
                 format_grid(grid, height, width, lambda x, y, ch: DISPLAY[ch]),
@@ -142,8 +139,3 @@ def soln(data):
         )
 
     return len(enclosed)
-
-
-if __name__ == "__main__":
-    import aoc
-    aoc.Challenge(10, "test4").solve(soln)

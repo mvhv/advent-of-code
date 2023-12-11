@@ -91,7 +91,7 @@ def neighbours(x, y):
     return product(adj_range(x), adj_range(y))
 
 
-def soln(data):
+def solution(data, debug=False):
     lines = [line.strip() for line in data.readlines()]
 
     height = len(lines)
@@ -115,5 +115,7 @@ def soln(data):
             gears.append(adj_nums.pop().value * adj_nums.pop().value)
             assert(len(adj_nums) == 0)
 
-    print(gears)
+    if debug:
+        print(gears)
+
     return sum(gears)

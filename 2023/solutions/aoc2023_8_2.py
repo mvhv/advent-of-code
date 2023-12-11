@@ -20,9 +20,8 @@ def ends_with(node, ch):
     return ch == node[-1]
 
 
-if __name__ == "__main__":
-    with aoc.Challenge(8).data() as data:
-        lines = data.readlines()
+def solution(data, debug=False):
+    lines = data.readlines()
 
     instructions = parse_instruction_line(lines[0])
     graph = dict(map(parse_map_line, lines[2:]))
@@ -37,6 +36,8 @@ if __name__ == "__main__":
             node = graph[node][next(inst)]
             n += 1
         distances.append(n)
-    
-    print(distances)
-    print(math.lcm(*distances))
+
+    if debug:
+        print(distances)
+
+    return math.lcm(*distances)

@@ -1,4 +1,3 @@
-import aoc
 from collections import Counter
 from enum import Enum, StrEnum
 from functools import cached_property, total_ordering
@@ -81,8 +80,7 @@ def score_hands(hands):
     return sum(rank * hand.bid for (rank, hand) in enumerate(sorted(hands), start=1))
 
 
-if __name__ == "__main__":
-    with aoc.challenge_data(7) as data:
-        hands = [Hand(*line.strip().split()) for line in data.readlines()]
-
-    print(score_hands(hands))
+def solution(data, debug=False):
+    return score_hands(
+        [Hand(*line.strip().split()) for line in data.readlines()]
+    )
